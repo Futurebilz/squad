@@ -1,0 +1,25 @@
+{
+  "name": "g-squad",
+  "version": "1.0.0",
+  "private": true,
+  "description": "G-squad mobile-first app",
+  "scripts": {
+    "build": "node build.js",
+    "start": "npm run build && node server.js",
+    "android:add": "npm run build && cap add android",
+    "android:sync": "npm run build && cap sync android",
+    "android:open": "cap open android",
+    "android:build": "npm run android:sync && cd android && ./gradlew assembleDebug"
+  },
+  "dependencies": {
+    "@capacitor/android": "^7.4.3",
+    "@capacitor/core": "^7.4.3",
+    "@capacitor/splash-screen": "^7.0.5",
+    "better-sqlite3": "^13.0.3",
+    "bootstrap": "^5.3.8",
+    "dotenv": "^18.0.9"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^7.4.3"
+  }
+}

@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">G-squad</string>
+    <string name="title_activity_main">G-squad</string>
+    <string name="package_name">com.gsquad.mobile</string>
+    <string name="custom_url_scheme">com.gsquad.mobile</string>
+</resources>

@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#fffdf7">
+    <meta name="description" content="A bright new home for your G-squad.">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <title>G-squad</title>
+    <style>
+      html, body { min-height: 100%; margin: 0; background: #fffdf7; }
+      .splash-pending #app > .screen:not(#splash-screen) { display: none !important; }
+      .splash-pending #splash-screen {
+        position: fixed;
+        inset: 0;
+        z-index: 10;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        background: #fffdf7;
+        color: #20231f;
+      }
+    </style>
+    <link rel="manifest" href="/manifest.webmanifest">
+    <link rel="icon" type="image/png" href="/6819650.png">
+    <link rel="stylesheet" href="/vendor/bootstrap.min.css">
+    <link rel="stylesheet" href="/styles.css">
+    <script type="module" src="/app.js"></script>
+  </head>
+  <body class="splash-pending">
+    <main class="app-shell" id="app">
+      <section class="screen splash-screen" id="splash-screen" aria-label="G-squad splash screen">
+        <div class="splash-art" aria-hidden="true">
+          <span class="orbit orbit-one"></span>
+          <span class="orbit orbit-two"></span>
+          <img class="brand-logo splash-logo" src="/6819650.png" alt="">
+        </div>
+        <div class="splash-copy">
+          <p class="eyebrow">YOUR PEOPLE. YOUR PLACE.</p>
+          <h1>Good things<br>happen <span>together.</span></h1>
+          <p class="splash-note">Making room for your kind of connection.</p>
+        </div>
+        <div class="splash-loading" aria-label="Opening G-squad">
+          <span class="loading-track"><span id="loading-progress"></span></span>
+          <span id="loading-countdown">10</span>
+        </div>
+      </section>
+
+      <section class="screen auth-screen d-none" id="login-screen" aria-labelledby="login-heading">
+        <header class="brand-header">
+          <img class="brand-logo" src="/6819650.png" alt="G-squad logo">
+          <span class="brand-name">G-squad</span>
+          <span class="brand-dot" aria-hidden="true"></span>
+        </header>
+
+        <div class="auth-content">
+          <div class="auth-heading">
+            <p class="eyebrow">GOOD TO SEE YOU</p>
+            <h1 id="login-heading">Your squad<br>is <span>waiting.</span></h1>
+            <p class="subheading">Enter your 6-digit code to sign in.</p>
+          </div>
+
+          <div class="pin-display" id="login-pin-display" aria-label="No digits entered" aria-live="polite">
+            <span class="pin-dot"></span><span class="pin-dot"></span><span class="pin-dot"></span>
+            <span class="pin-dot"></span><span class="pin-dot"></span><span class="pin-dot"></span>
+          </div>
+          <p class="form-message" id="login-message" role="status"></p>
+
+          <div class="keypad" aria-label="Numeric keypad">
+            <button class="keypad-key" type="button" data-digit="1" aria-label="1">1</button>
+            <button class="keypad-key" type="button" data-digit="2" aria-label="2">2</button>
+            <button class="keypad-key" type="button" data-digit="3" aria-label="3">3</button>
+            <button class="keypad-key" type="button" data-digit="4" aria-label="4">4</button>
+            <button class="keypad-key" type="button" data-digit="5" aria-label="5">5</button>
+            <button class="keypad-key" type="button" data-digit="6" aria-label="6">6</button>
+            <button class="keypad-key" type="button" data-digit="7" aria-label="7">7</button>
+            <button class="keypad-key" type="button" data-digit="8" aria-label="8">8</button>
+            <button class="keypad-key" type="button" data-digit="9" aria-label="9">9</button>
+            <span class="keypad-spacer" aria-hidden="true"></span>
+            <button class="keypad-key" type="button" data-digit="0" aria-label="0">0</button>
+            <button class="keypad-key keypad-delete" type="button" data-action="delete" aria-label="Delete last digit">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5 3 12l6 7h12V5H9Z"></path><path d="m12 9 6 6m0-6-6 6"></path></svg>
+            </button>
+          </div>
+
+          <p class="switch-prompt">New around here? <button class="text-action" type="button" data-screen="register">Create account <span aria-hidden="true">&#8599;</span></button></p>
+        </div>
+        <div class="screen-footer"><span>MADE FOR YOUR CIRCLE</span><span>01 / 02</span></div>
+      </section>
+
+      <section class="screen auth-screen d-none" id="register-screen" aria-labelledby="register-heading">
+        <header class="brand-header">
+          <img class="brand-logo" src="/6819650.png" alt="G-squad logo">
+          <span class="brand-name">G-squad</span>
+          <button class="back-button" type="button" data-screen="login" aria-label="Back to sign in">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>
+          </button>
+        </header>
+
+        <div class="register-content">
+          <div class="auth-heading">
+            <p class="eyebrow">A LITTLE MORE TOGETHER</p>
+            <h1 id="register-heading">Find your<br><span>people.</span></h1>
+            <p class="subheading">A few details and you're in.</p>
+          </div>
+
+          <form id="register-form" novalidate>
+            <div class="field-group">
+              <label for="username">YOUR NAME</label>
+              <input class="form-control" id="username" name="username" type="text" placeholder="How should we call you?" autocomplete="nickname" minlength="2" maxlength="24" required>
+            </div>
+            <div class="field-group">
+              <label for="email">EMAIL ADDRESS</label>
+              <input class="form-control" id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" maxlength="254" required>
+            </div>
+            <div class="field-group pin-fields">
+              <label for="new-pin">YOUR 6-DIGIT CODE</label>
+              <div class="pin-input-row">
+                <input class="form-control pin-input" id="new-pin" name="pin" type="password" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" autocomplete="new-password" placeholder="&#8226; &#8226; &#8226; &#8226; &#8226; &#8226;" required>
+                <input class="form-control pin-input" id="confirm-pin" name="confirmPin" type="password" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" autocomplete="new-password" placeholder="Confirm code" aria-label="Confirm your six-digit code" required>
+              </div>
+              <p class="field-hint">Set a code you can remember. You'll use it to sign in.</p>
+            </div>
+            <p class="form-message register-message" id="register-message" role="status"></p>
+            <button class="btn primary-button" type="submit">Create my account <span aria-hidden="true">&#8594;</span></button>
+          </form>
+
+          <p class="switch-prompt register-switch">Already part of the squad? <button class="text-action" type="button" data-screen="login">Sign in</button></p>
+        </div>
+        <div class="screen-footer"><span>MADE FOR YOUR CIRCLE</span><span>02 / 02</span></div>
+      </section>
+
+      <section class="screen dashboard-screen d-none" id="dashboard-screen" aria-label="G-squad dashboard">
+        <header class="dashboard-header">
+          <div class="dashboard-brand">
+            <img class="brand-logo" src="/6819650.png" alt="">
+            <span>G-squad</span>
+          </div>
+          <button class="dashboard-avatar" id="dashboard-avatar" type="button" data-tab="settings" aria-label="Open account settings">G</button>
+        </header>
+
+        <div class="dashboard-main">
+          <section class="dashboard-panel" data-tab-panel="home" aria-labelledby="home-heading">
+            <div class="dashboard-greeting">
+              <p class="eyebrow">YOUR MONEY, AT A GLANCE</p>
+              <h1 id="home-heading">Hey, <span id="dashboard-name">friend</span>.</h1>
+            </div>
+            <div class="balance-panel">
+              <div class="balance-topline"><span>AVAILABLE BALANCE</span><span class="balance-indicator">USD WALLET</span></div>
+              <p class="balance-amount" id="balance-amount">$0.00</p>
+              <p class="balance-caption">Your G-squad wallet</p>
+              <div class="balance-actions">
+                <button class="balance-action" type="button" data-tab="deposit">
+                  <span class="action-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 19V5m-6 6 6-6 6 6"></path></svg></span>
+                  Deposit
+                </button>
+                <button class="balance-action" type="button" data-tab="withdraw">
+                  <span class="action-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 5v14m6-6-6 6-6-6"></path></svg></span>
+                  Withdraw
+                </button>
+              </div>
+            </div>
+            <div class="activity-heading"><h2>Recent activity</h2><span id="activity-count">0 transactions</span></div>
+            <div class="activity-list" id="activity-list" aria-live="polite"></div>
+            <p class="wallet-disclaimer">Only confirmed deposits are available to withdraw.</p>
+          </section>
+
+          <section class="dashboard-panel d-none" data-tab-panel="deposit" aria-labelledby="deposit-heading">
+            <div class="dashboard-greeting">
+              <p class="eyebrow">ADD TO YOUR WALLET</p>
+              <h1 id="deposit-heading">Make a deposit.</h1>
+              <p class="dashboard-subtitle">Choose a coin and pay to the address shown in the app.</p>
+            </div>
+            <form class="money-form" id="deposit-form" novalidate>
+              <label for="deposit-amount">AMOUNT IN USD</label>
+              <div class="amount-field"><span aria-hidden="true">$</span><input id="deposit-amount" name="amount" type="number" inputmode="decimal" min="1" max="10000" step="0.01" placeholder="0.00" required></div>
+              <div class="amount-presets" aria-label="Quick amount">
+                <button type="button" data-amount="25">$25</button>
+                <button type="button" data-amount="50">$50</button>
+                <button type="button" data-amount="100">$100</button>
+              </div>
+              <div class="money-field-group">
+                <label for="deposit-currency">CRYPTOCURRENCY</label>
+                <select class="form-control currency-select" id="deposit-currency" name="currency" required>
+                  <option value="BTC">Bitcoin (BTC)</option>
+                  <option value="ETH">Ethereum (ETH)</option>
+                  <option value="LTC">Litecoin (LTC)</option>
+                  <option value="DOGE">Dogecoin (DOGE)</option>
+                  <option value="TRX">TRON (TRX)</option>
+                  <option value="USDT_TRX">Tether (USDT, TRON)</option>
+                  <option value="USDT_BSC">Tether (USDT, BSC)</option>
+                  <option value="USDC">USD Coin (USDC)</option>
+                </select>
+              </div>
+              <p class="wallet-disclaimer">A payment address and exact coin amount will be created by Plisio.</p>
+              <button class="btn primary-button money-submit" type="submit">Process deposit <span aria-hidden="true">&#8594;</span></button>
+              <p class="form-message money-message" id="deposit-message" role="status"></p>
+            </form>
+          </section>
+
+          <section class="dashboard-panel d-none" data-tab-panel="deposit-details" aria-labelledby="invoice-heading">
+            <button class="invoice-back" id="invoice-back" type="button" data-tab="deposit"><span aria-hidden="true">&#8592;</span> Back to deposit</button>
+            <div class="dashboard-greeting invoice-greeting">
+              <p class="eyebrow">PAYMENT REQUEST</p>
+              <h1 id="invoice-heading">Send your crypto.</h1>
+              <p class="dashboard-subtitle">Keep this screen open. The invoice status updates automatically.</p>
+            </div>
+            <div class="invoice-status" id="invoice-status" data-status="new"><span class="status-dot"></span><span id="invoice-status-label">Waiting for payment</span></div>
+            <div class="invoice-amount-card">
+              <span class="invoice-label">SEND EXACTLY</span>
+              <p class="invoice-crypto-amount"><span id="invoice-crypto-amount">0.00</span> <span id="invoice-currency">BTC</span></p>
+              <p class="invoice-fiat-amount" id="invoice-fiat-amount">$0.00 USD</p>
+            </div>
+            <div class="invoice-address-block">
+              <label for="invoice-address">DEPOSIT ADDRESS</label>
+              <div class="invoice-address-row"><code id="invoice-address"></code><button id="copy-invoice-address" type="button" aria-label="Copy deposit address"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"></rect><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"></path></svg></button></div>
+            </div>
+            <dl class="invoice-facts">
+              <div><dt>Coin rate</dt><dd id="invoice-rate">Waiting for quote</dd></div>
+              <div><dt>Expires in</dt><dd id="invoice-expiry">--:--</dd></div>
+              <div><dt>Transaction ID</dt><dd id="invoice-transaction-id"></dd></div>
+            </dl>
+            <p class="invoice-warning">Only send <strong id="invoice-warning-currency">BTC</strong> on its matching network. Sending a different coin or network can permanently lose your funds.</p>
+          </section>
+
+          <section class="dashboard-panel d-none" data-tab-panel="withdraw" aria-labelledby="withdraw-heading">
+            <div class="dashboard-greeting">
+              <p class="eyebrow">MOVE FUNDS OUT</p>
+              <h1 id="withdraw-heading">Make a withdrawal.</h1>
+              <p class="dashboard-subtitle">Available confirmed balance: <strong id="withdraw-balance">$0.00</strong></p>
+            </div>
+            <form class="money-form" id="withdraw-form" novalidate>
+              <label for="withdraw-amount">AMOUNT IN USD</label>
+              <div class="amount-field"><span aria-hidden="true">$</span><input id="withdraw-amount" name="amount" type="number" inputmode="decimal" min="5" max="10000" step="0.01" placeholder="0.00" required></div>
+              <div class="money-field-group">
+                <label for="withdraw-currency">PAYOUT CURRENCY</label>
+                <select class="form-control currency-select" id="withdraw-currency" name="currency" required>
+                  <option value="BTC">Bitcoin (BTC)</option>
+                  <option value="ETH">Ethereum (ETH)</option>
+                  <option value="LTC">Litecoin (LTC)</option>
+                  <option value="DOGE">Dogecoin (DOGE)</option>
+                  <option value="TRX">TRON (TRX)</option>
+                  <option value="USDT_TRX">Tether (USDT, TRON)</option>
+                  <option value="USDT_BSC">Tether (USDT, BSC)</option>
+                  <option value="USDC">USD Coin (USDC)</option>
+                </select>
+              </div>
+              <div class="money-field-group">
+                <label for="withdraw-address">YOUR RECEIVING ADDRESS</label>
+                <input class="form-control" id="withdraw-address" name="address" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="150" placeholder="Paste your wallet address" required>
+              </div>
+              <p class="wallet-disclaimer">Withdrawal requests are reviewed before payout. Double-check the coin network and address.</p>
+              <button class="btn primary-button money-submit" type="submit">Request withdrawal <span aria-hidden="true">&#8594;</span></button>
+              <p class="form-message money-message" id="withdraw-message" role="status"></p>
+            </form>
+          </section>
+
+          <section class="dashboard-panel d-none" data-tab-panel="settings" aria-labelledby="settings-heading">
+            <div class="dashboard-greeting">
+              <p class="eyebrow">YOUR ACCOUNT</p>
+              <h1 id="settings-heading">Settings.</h1>
+            </div>
+            <div class="profile-row">
+              <div class="profile-avatar" id="settings-avatar">G</div>
+              <div><p class="profile-name" id="settings-name">G-squad member</p><p class="profile-email" id="settings-email"></p></div>
+            </div>
+            <div class="settings-row">
+              <span class="settings-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="11" rx="2"></rect><path d="M8 10V7a4 4 0 0 1 8 0v3m-4 5v2"></path></svg></span>
+              <div><p class="settings-title">Sign-in code</p><p class="settings-caption">Your 6-digit code is stored on this device.</p></div>
+            </div>
+            <div class="settings-row">
+              <span class="settings-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3 4.5 6v5c0 4.8 3.2 8.2 7.5 10 4.3-1.8 7.5-5.2 7.5-10V6L12 3Z"></path><path d="m9 12 2 2 4-4"></path></svg></span>
+              <div><p class="settings-title">Demo wallet</p><p class="settings-caption">Not connected to a bank or payment service.</p></div>
+            </div>
+            <button class="sign-out-button" id="sign-out" type="button">Sign out <span aria-hidden="true">&#8594;</span></button>
+          </section>
+        </div>
+
+        <nav class="bottom-nav" aria-label="Main navigation">
+          <button class="nav-item is-active" type="button" data-tab="home" aria-current="page">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-6v-7h-4v7H4a1 1 0 0 1-1-1V10Z"></path></svg><span>Home</span>
+          </button>
+          <button class="nav-item" type="button" data-tab="deposit">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5m-6 6 6-6 6 6"></path></svg><span>Deposit</span>
+          </button>
+          <button class="nav-item" type="button" data-tab="withdraw">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14m6-6-6 6-6-6"></path></svg><span>Withdraw</span>
+          </button>
+          <button class="nav-item" type="button" data-tab="settings">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"></circle><path d="m19.4 15 .1.1 1.4 1.1-1.4 2.4-1.7-.6a8 8 0 0 1-1.4.8l-.3 1.8h-2.8l-.3-1.8a8 8 0 0 1-1.4-.8l-1.7.6-1.4-2.4 1.4-1.1a7 7 0 0 1 0-1.6l-1.4-1.1 1.4-2.4 1.7.6a8 8 0 0 1 1.4-.8l.3-1.8h2.8l.3 1.8a8 8 0 0 1 1.4.8l1.7-.6 1.4 2.4-1.4 1.1a7 7 0 0 1 0 1.5Z" transform="translate(-1 -1)"></path></svg><span>Settings</span>
+          </button>
+        </nav>
+      </section>
+    </main>
+    <div class="app-toast" id="app-toast" role="status" aria-live="polite" aria-atomic="true" aria-hidden="true">
+      <span class="toast-mark" id="toast-mark" aria-hidden="true">&#10003;</span>
+      <div class="toast-copy">
+        <p class="toast-title">G-squad</p>
+        <p class="toast-message" id="toast-message"></p>
+      </div>
+      <button class="toast-close" id="toast-close" type="button" aria-label="Dismiss notification">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 7 10 10M17 7 7 17"></path></svg>
+      </button>
+    </div>
+    <div class="loading-overlay d-none" id="loading-overlay" role="status" aria-live="polite" aria-hidden="true">
+      <div class="loading-indicator">
+        <span class="loading-spinner" aria-hidden="true"></span>
+        <span class="loading-label">Saving your changes...</span>
+      </div>
+    </div>
+  </body>
+</html>

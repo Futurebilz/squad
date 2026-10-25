@@ -1,0 +1,17 @@
+{
+  "appId": "com.gsquad.mobile",
+  "appName": "G-squad",
+  "webDir": "www",
+  "server": {
+    "androidScheme": "https"
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0,
+      "launchAutoHide": false,
+      "backgroundColor": "#fffdf7",
+      "androidScaleType": "CENTER",
+      "showSpinner": false
+    }
+  }
+}

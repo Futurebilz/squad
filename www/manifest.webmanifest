@@ -1,0 +1,19 @@
+{
+  "name": "G-squad",
+  "short_name": "G-squad",
+  "description": "A bright new home for your G-squad.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#fffdf7",
+  "theme_color": "#fffdf7",
+  "icons": [
+    {
+      "src": "/6819650.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
